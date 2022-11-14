@@ -18,7 +18,7 @@ jobs:
       run: sudo composer install
     - name: Install and build npm assets
       run: npm install && npm run build
-    - name: Migrate
-      run: php artisan migrate:fresh --force
     - name: Run Laravel
       run: ./vendor/bin/sail up -d
+    - name: Migrate
+      run: php artisan migrate:fresh --force
