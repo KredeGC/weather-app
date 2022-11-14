@@ -4,8 +4,6 @@ namespace Tests\Unit;
 
 use App\Http\Traits\ForecastTrait;
 
-use Illuminate\Support\Str;
-
 use PHPUnit\Framework\TestCase;
 
 class ForecastTraitTest extends TestCase

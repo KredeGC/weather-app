@@ -40,7 +40,9 @@ jobs:
       run: ./vendor/bin/sail up -d
     - name: Generate key
       run: ./vendor/bin/sail artisan key:generate
-    - name: Run Test
-      run: ./vendor/bin/sail artisan test  # sudo chmod +x test.sh && ./test.sh
+    - name: Run Test # The database may not be ready yet, so sleep for a bit
+      run: |
+        sleep 10
+        ./vendor/bin/sail artisan test
     - name: Stop Laravel Sail
       run: ./vendor/bin/sail stop
