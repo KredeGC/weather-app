@@ -19,4 +19,4 @@ jobs:
     - name: Install and build npm assets
       run: npm install && npm run build
     - name: Run Laravel
-      run: ./test.sh
+      run: sudo chmod +x test.sh && ./test.sh
