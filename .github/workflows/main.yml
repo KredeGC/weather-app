@@ -21,13 +21,6 @@ jobs:
           vendor
           public/build
         key: ${{ runner.os }}-dependencies
-    - name: Cache images
-      uses: docker/build-push-action@v3
-      with:
-        context: .
-        tags: user/app:latest
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
     - name: Install composer
       if: steps.cache-dependencies.outputs.cache-hit != 'true'
       run: |
