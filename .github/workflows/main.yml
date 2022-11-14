@@ -20,8 +20,6 @@ jobs:
           node_modules
           vendor
         key: ${{ runner.os }}-dependencies
-    - name: Create .env
-      run: cp .env.example .env
     - name: Install composer
       if: steps.cache-dependencies.outputs.cache-hit != 'true'
       run: |
@@ -36,11 +34,13 @@ jobs:
       run: npm install
     - name: Build npm assets
       run: npm run build
+    - name: Create .env
+      run: cp .env.example .env
     - name: Run Laravel Sail
       run: ./vendor/bin/sail up -d
     - name: Generate key
       run: ./vendor/bin/sail artisan key:generate
     - name: Run Test
-      run: sudo chmod +x test.sh && ./test.sh
+      run: ./vendor/bin/sail artisan test  # sudo chmod +x test.sh && ./test.sh
     - name: Stop Laravel Sail
       run: ./vendor/bin/sail stop
