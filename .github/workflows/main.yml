@@ -21,4 +21,4 @@ jobs:
     - name: Run Laravel
       run: ./vendor/bin/sail up -d
     - name: Migrate
-      run: php artisan migrate:fresh --force
+      run: sail artisan migrate:fresh --force
