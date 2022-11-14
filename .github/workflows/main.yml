@@ -16,9 +16,9 @@ jobs:
       uses: php-actions/composer@v6
     - name: Install composer dependencies
       run: sudo composer install
-    - name: Install npm dependencies
+    - name: Install and build npm assets
       run: npm install && npm run build
     - name: Migrate
-      run: php artisan migrate:fresh
+      run: php artisan migrate:fresh --force
     - name: Run Laravel
       run: ./vendor/bin/sail up -d
