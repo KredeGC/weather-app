@@ -12,14 +12,30 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Cache Dependencies
+      id: cache-dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          node_modules
+          vendor
+        key: ${{ runner.os }}-dependencies
     - name: Create .env
       run: cp .env.example .env
     - name: Install composer
-      uses: php-actions/composer@v6
-    - name: Install composer dependencies
-      run: sudo composer install
-    - name: Install and build npm assets
-      run: npm install && npm run build
+      if: steps.cache-dependencies.outputs.cache-hit != 'true'
+      run: |
+        docker run --rm \
+        -u "$(id -u):$(id -g)" \
+        -v $(pwd):/var/www/html \
+        -w /var/www/html \
+        laravelsail/php81-composer:latest \
+        composer install --ignore-platform-reqs
+    - name: Install npm dependencies
+      if: steps.cache-dependencies.outputs.cache-hit != 'true'
+      run: npm install
+    - name: Build npm assets
+      run: npm run build
     - name: Run Laravel Sail
       run: ./vendor/bin/sail up -d
     - name: Generate key
