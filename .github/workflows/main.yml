@@ -12,5 +12,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Run Laravel project
+    - name: Install composer
+      uses: php-actions/composer@v6
+    - name: Install dependencies
+      run: composer install
+    - name: Migrate
+      run: php artisan migrate:fresh
+    - name: Run Laravel
       run: ./vendor/bin/sail up -d
