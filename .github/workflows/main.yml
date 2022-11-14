@@ -20,5 +20,11 @@ jobs:
       run: sudo composer install
     - name: Install and build npm assets
       run: npm install && npm run build
-    - name: Run Laravel
+    - name: Run Laravel Sail
+      run: ./vendor/bin/sail up -d
+    - name: Generate key
+      run: ./vendor/bin/sail artisan key:generate
+    - name: Run Test
       run: sudo chmod +x test.sh && ./test.sh
+    - name: Stop Laravel Sail
+      run: ./vendor/bin/sail stop
