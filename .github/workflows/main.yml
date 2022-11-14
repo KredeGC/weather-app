@@ -19,6 +19,4 @@ jobs:
     - name: Install and build npm assets
       run: npm install && npm run build
     - name: Run Laravel
-      run: ./vendor/bin/sail up -d
-    - name: Migrate
-      run: ./vendor/bin/sail artisan migrate:fresh --force
+      run: ./test.sh
