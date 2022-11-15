@@ -36,3 +36,7 @@ cp example.env .env
 ./vendor/bin/sail up -d
 ./vendor/bin/sail artisan key:generate
 ```
+
+# Media
+
+![Home page](.github/media/home.png)
