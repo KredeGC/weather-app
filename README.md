@@ -38,5 +38,11 @@ cp example.env .env
 ```
 
 # Media
-
+The home page.
 ![Home page](.github/media/home.png)
+
+Weather forecast for Odense
+![Home page](.github/media/forecast.png)
+
+The mailing list subscribe page, showing a required field.
+![Home page](.github/media/subscribe.png)
