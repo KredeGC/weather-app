@@ -26,9 +26,10 @@ class WeatherController extends Controller
             'location' => ['required']
         ]);
         
-        $forecast = $this->getForecast($validated['location']);
+        $location = $this->getLocation($validated['location']);
+        $forecast = $this->getForecast($location->latitude, $location->longitude);
         
         // Pass weather forecast to view
-        return view('forecast', ['forecast' => $forecast]);
+        return view('forecast', ['location' => $location->name, 'forecast' => $forecast]);
     }
 }

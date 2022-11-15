@@ -21,7 +21,11 @@ class ForecastTraitTest extends TestCase
     
     public function test_forecast_exists()
     {
-        $forecast = $this->getForecast('Copenhagen');
+        $location = $this->getLocation('Copenhagen');
+        
+        $this->assertTrue($location !== false);
+        
+        $forecast = $this->getForecast($location->latitude, $location->longitude);
         
         $this->assertTrue($forecast !== false);
     }

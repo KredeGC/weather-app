@@ -6,13 +6,13 @@
         
         @vite(['resources/js/app.js'])
 
-        <title>Weather Forecast</title>
+        <title>Weather-App</title>
     </head>
     <body class="bg-white">
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('index') }}">
-                    <span>Weather Forecast</span>
+                    <span>Weather-App</span>
                 </a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">

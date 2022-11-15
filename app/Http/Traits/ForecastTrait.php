@@ -17,13 +17,8 @@ trait ForecastTrait {
         return $locationData->results[0];
     }
     
-    public function getForecast($location)
+    public function getForecast($latitude, $longitude)
     {
-        $cityData = $this->getLocation($location);
-        
-        $latitude = $cityData->latitude;
-        $longitude = $cityData->longitude;
-        
         // Query API for weather data
         $weatherUrl = "https://api.open-meteo.com/v1/forecast?latitude=$latitude&longitude=$longitude&hourly=temperature_2m,relativehumidity_2m,windspeed_10m&timezone=auto";
         $weatherResult = file_get_contents($weatherUrl);
