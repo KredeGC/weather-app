@@ -16,17 +16,13 @@ class ForecastSubscriptionTest extends TestCase
     
     public function test_mailinglist_subscribe_unsubscribe()
     {
-        // Add an entry for the given
-        // TODO: Use model factories
-        $subscription = new ForecastSubscription();
-        
-        $subscription->name         = 'John Doe';
-        $subscription->mail         = 'johndoe@example.com';
-        $subscription->location     = 'Copenhagen';
-        $subscription->token        = Str::random(60);
+        // Add an entry for the given subscription
+        $subscription = ForecastSubscription::factory()->make();
         
         $subscription->save();
         
+        $mail = $subscription->mail;
+        $location = $subscription->location;
         $token = $subscription->token;
         
         $this->assertModelExists($subscription);
@@ -34,7 +30,11 @@ class ForecastSubscriptionTest extends TestCase
         $this->assertDatabaseCount('forecast_subscriptions', 1);
         
         $this->assertDatabaseHas('forecast_subscriptions', [
-            'mail' => 'johndoe@example.com',
+            'mail' => $mail,
+        ]);
+        
+        $this->assertDatabaseHas('forecast_subscriptions', [
+            'location' => $location,
         ]);
         
         

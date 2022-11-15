@@ -10,5 +10,5 @@ class ForecastSubscription extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['mail', 'name', 'location'];
+    protected $fillable = ['mail', 'name', 'location', 'token'];
 }
